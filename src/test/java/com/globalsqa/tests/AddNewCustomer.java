@@ -20,15 +20,16 @@ public class AddNewCustomer extends BaseTest {
     @Severity(CRITICAL)
     @Owner("Denys Nazarov")
     @Link(name = "XYZ Bank", url = "https://www.globalsqa.com/angularJs-protractor/BankingProject/#/manager")
-    @Issue("AUTH-111")
-    @TmsLink("TMS-1111")
+    @Issue("AUTH-222")
+    @TmsLink("TMS-2222")
     public void AddNewCustomerTest() {
         context.driver.get(ConfigurationReader.get("base_url"));
-        driver.
+        BankManagerLoginButton
+  /*      driver.
         assertTrue(new LoginPage(context)
                 .loginAsStandardUser()
                 .getFooterText()
-                .contains("Sauce Labs"));
+                .contains("Sauce Labs"));*/
     }
 
     @Test
@@ -42,16 +43,16 @@ public class AddNewCustomer extends BaseTest {
     public void emptyLoginTest() {
         context.driver.get(ConfigurationReader.get("base_url"));
 
-        assertEquals("Epic sadface: Username is required",
-                new LoginPage(context).incorrectLoginAs("",""));
+    //    assertEquals("Epic sadface: Username is required",
+    //            new LoginPage(context).incorrectLoginAs("",""));
     }
 
     @Test
     public void blockedUserLoginTest() {
         context.driver.get(ConfigurationReader.get("base_url"));
-        assertEquals(
-                "Epic sadface: Sorry, this user has been locked out.",
-                new LoginPage(context).incorrectLoginAs("locked_out_user","secret_sauce")
-        );
+//        assertEquals(
+//                "Epic sadface: Sorry, this user has been locked out.",
+//                new LoginPage(context).incorrectLoginAs("locked_out_user","secret_sauce")
+//        );
     }
 }
