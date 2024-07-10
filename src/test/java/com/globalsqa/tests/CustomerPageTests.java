@@ -8,15 +8,11 @@ import jdk.jfr.Description;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.WebElement;
 
-import java.sql.SQLOutput;
 import java.time.Duration;
 import java.util.List;
-import java.util.Objects;
 
 import static io.qameta.allure.SeverityLevel.CRITICAL;
-import static org.junit.jupiter.api.Assertions.*;
 
 public class CustomerPageTests extends BaseTest {
 
