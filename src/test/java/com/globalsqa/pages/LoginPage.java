@@ -18,9 +18,10 @@ public class LoginPage extends BasePage {
     public WebElement customerLoginButton;
 
     @FindBy(css = "div:nth-child(3) > button[ng-click='manager()']")
-    public WebElement BankManagerLoginButton;
+    public  WebElement BankManagerLoginButton;
 
     public CustomerPage loginAsCustomer(){
+        customerLoginButton.click();
         return new CustomerPage(context);
     }
 

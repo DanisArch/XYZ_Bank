@@ -1,7 +1,10 @@
 package com.globalsqa.tests;
 
 
+import com.globalsqa.pages.AddNewCustomerPage;
+import com.globalsqa.pages.CustomerPage;
 import com.globalsqa.pages.LoginPage;
+import com.globalsqa.pages.ManagerPage;
 import com.globalsqa.utils.ConfigurationReader;
 import io.qameta.allure.*;
 import jdk.jfr.Description;
@@ -24,8 +27,10 @@ public class AddNewCustomer extends BaseTest {
     @TmsLink("TMS-2222")
     public void AddNewCustomerTest() {
         context.driver.get(ConfigurationReader.get("base_url"));
-        BankManagerLoginButton
+        NewCustomerInfo newCustomer = new NewCustomerInfo("David","Aguero","AI001E");
+        CustomerPage.loginButton.click();
   /*      driver.
+
         assertTrue(new LoginPage(context)
                 .loginAsStandardUser()
                 .getFooterText()
