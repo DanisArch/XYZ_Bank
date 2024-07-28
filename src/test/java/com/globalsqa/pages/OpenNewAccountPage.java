@@ -10,19 +10,19 @@ public class OpenNewAccountPage extends BasePage {
     public OpenNewAccountPage(TestContext context) {
         super(context);
     }
-/* Ниже скопированные данные (черновик)
-    @FindBy(css = "button[ng-click='addCust()']")
-    public WebElement addNewCustonerButton;
 
-    @FindBy(css = "button[ng-click='addCust()']")
-    public WebElement openCustonerAcountButton;
+    @FindBy(css = "select[id='userSelect']")
+    public WebElement customerName;
 
-    @FindBy(css = "button[ng-click='showCust()']")
-    public WebElement showAllCustomersButton;
+    @FindBy(css = "select[id='currency']")
+    public WebElement selectCurrency;
+
+    @FindBy(css = "button[type='submit']")
+    public WebElement processSubmitButton;
 
     @Step("Добавить нового пользователя банка")
     public AddNewCustomerPage addNewCustomer () {
         return new AddNewCustomerPage(context);
-    }*/
+    }
 
 }

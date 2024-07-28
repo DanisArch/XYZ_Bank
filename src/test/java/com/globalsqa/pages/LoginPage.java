@@ -26,7 +26,7 @@ public class LoginPage extends BasePage {
 
     @Step("Найти логотип банка на главной странице")
     public String findLogo() {
-        new LoginPage(context).findLogo();
+        new LoginPage(context);
 //        context.driver.get(ConfigurationReader.get("base_url"));
         context.wait.until(ExpectedConditions.visibilityOfAllElements(new LoginPage(context).logoBank));
         return logoBank.getText();
