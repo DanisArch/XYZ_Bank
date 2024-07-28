@@ -25,20 +25,20 @@ public class CustomerPageTests extends BaseTest {
     @Issue("AUTH-444")
     @TmsLink("TMS-4444")
     public void findCustomerByNameTest() throws InterruptedException {
-        context.driver.get(ConfigurationReader.get("base_url"));
-        context.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+//        context.driver.get(ConfigurationReader.get("base_url"));
+//        context.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
         new LoginPage(context).loginAsCustomer();
-        List<String> allCustomer= new CustomerPage(context).findAllCustomer();
-        for (int i=0; i<allCustomer.size(); i++) {
-            if (allCustomer.isEmpty()) {
-                System.out.println("У банка нет клиентов");
-            }else {
+        List<String> allCustomer = new CustomerPage(context).findAllCustomer();
+        if (allCustomer.isEmpty()) {
+            Assertions.fail("У банка нет клиентов");
+        }
+        for (int i = 0; i < allCustomer.size(); i++) {         //Вынести всю логику в отдельный метод
                 String lastName = "Ron Weasly";
                 if (allCustomer.get(i).toString().equals(lastName)) {
-                    Assertions.assertEquals(allCustomer.get(i).toString(),"Ron Weasly");
+                    Assertions.assertEquals(allCustomer.get(i).toString(), "Ron Weasly"); //Вынести сравнение в
+                    // проперти файл и сравнивать его от туда
                     System.out.print(" Клиент: " + allCustomer.get(i).toString() + " с индексом - " + i +
-                                    " является пользователем банка.");
-                }
+                            " является пользователем банка.");
 
             }
         }

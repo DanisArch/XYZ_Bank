@@ -32,7 +32,9 @@ public class LoginTests extends BaseTest {
 
         WebElement customerButton = new LoginPage(context).customerLoginButton;
         boolean actualValue = customerButton.isEnabled();
-        assertTrue(actualValue);
+        assertTrue(actualValue); //Добавить сообщение о проверке
+        //Логи нужно/желательно вести не в самом тесте, а выносить их в метод. Для этого у Алюра есть специальный
+        // метод, который помогает вести логи (разобраться с этим вопросом
         /*
         if (actualValue)
             System.out.println("Button is enabled");

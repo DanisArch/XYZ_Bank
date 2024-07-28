@@ -5,11 +5,12 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class ManagerPage extends BasePage {
-    public ManagerPage(TestContext context) {
+public class OpenNewAccountPage extends BasePage {
+
+    public OpenNewAccountPage(TestContext context) {
         super(context);
     }
-
+/* Ниже скопированные данные (черновик)
     @FindBy(css = "button[ng-click='addCust()']")
     public WebElement addNewCustonerButton;
 
@@ -22,17 +23,6 @@ public class ManagerPage extends BasePage {
     @Step("Добавить нового пользователя банка")
     public AddNewCustomerPage addNewCustomer () {
         return new AddNewCustomerPage(context);
-    }
+    }*/
 
-    @Step("Добавить новый счет для пользователя банка")
-    public OpenNewAccountPage openNewAccount () {
-        return new OpenNewAccountPage(context);
-    }
-
-    @Step("Список всех пользователей банка")
-    public AllBankCustomersPage allBankCustomers () {
-        return new AllBankCustomersPage(context);
-    }
 }
-
-
