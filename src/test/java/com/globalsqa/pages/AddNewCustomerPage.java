@@ -1,6 +1,7 @@
 package com.globalsqa.pages;
 
 import com.globalsqa.context.TestContext;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -21,6 +22,7 @@ public class AddNewCustomerPage extends BasePage{
     @FindBy(css = "button[type='submit']")
     public WebElement addNewCustomerButton;
 
+    @Step("Заполнить поля с данными нового пользователя банка")
     private void addNewCustomer(String fName, String lName,String pCode) {
         userFirstName.sendKeys(fName);
         userLastName.sendKeys(lName);

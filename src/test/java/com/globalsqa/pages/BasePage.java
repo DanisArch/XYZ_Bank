@@ -14,7 +14,7 @@ public class BasePage {
         this.context = context;
         PageFactory.initElements(context.driver, this);
     }
-
+//Где должны находится элементы, которые присутствуют на всех страницах сайта? Чтоб не дублировать
     @FindBy(css = "button.btn.home")
     public WebElement homePageButton;
 
