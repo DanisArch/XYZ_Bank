@@ -1,17 +1,12 @@
 package com.globalsqa.tests;
 
 import com.globalsqa.pages.LoginPage;
-import com.globalsqa.pages.ManagerPage;
-import com.globalsqa.utils.ConfigurationReader;
 import io.qameta.allure.*;
 import jdk.jfr.Description;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
 
-import java.time.Duration;
 
 import static io.qameta.allure.SeverityLevel.CRITICAL;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -19,28 +14,47 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class ManagerFunctionTest extends BaseTest {
 
     @Test
-        @DisplayName("Тест проверяет наличие трех основных функций в кабинете менеджера")
-        @Description("Этот тест проверяет наличие трех кнопок в кабинете менеджера  для выполнения своих трех функций")
-        @Severity(CRITICAL)
-        @Owner("Denys Nazarov")
-        @Link(name = "XYZ Bank", url = "https://www.globalsqa.com/angularJs-protractor/BankingProject/#/manager")
-        @Issue("AUTH-555")
-        @TmsLink("TMS-5555")
-        public void testingTheThreeFunctionsOfAManager() throws InterruptedException {
-      /*  WebElement addNewCustonerButton = new ManagerPage(context).addNewCustonerButton;
-        boolean isDisplayed (By Webelement addNewCustonerButton) {
-                try {
-                    return context.driver.findElement(new ManagerPage(context).addNewCustonerButton)).isDisplayed();
-                } catch (NoSuchElementException e) {
-                    return false;
-                }
-            }
-            Assert.assertTrue(isDisplayed(new ManagerPage(context).addNewCustonerButton));*/
-//        context.driver.get(ConfigurationReader.get("base_url"));
-//        context.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
-//        new LoginPage(context).loginAsBankManager();
-        Thread.sleep(3000);
-        assertTrue(new ManagerPage(context).addNewCustonerButton.isEnabled());
-        Thread.sleep(3000);
-        }
+    @DisplayName("Проверка наличия кнопки для добавления нового пользователя в кабинете менеджера")
+    @Description("Этот тест проверяет наличие кнопки для добавления нового пользователя в кабинете менеджера")
+    @Severity(CRITICAL)
+    @Owner("Denys Nazarov")
+    @Link(name = "XYZ Bank", url = "https://www.globalsqa.com/angularJs-protractor/BankingProject/#/manager")
+    @Issue("AUTH-555")
+    @TmsLink("TMS-5555-1")
+    public void AvailabilityAddNewCustomerButtonTest() throws NoSuchElementException {
+
+        assertTrue(new LoginPage(context)
+                .loginAsBankManager()
+                .waitAddNewCustomerButton());
+    }
+
+    @Test
+    @DisplayName("Проверка наличия кнопки открытия счета для нового пользователя в кабинете менеджера")
+    @Description("Этот тест проверяет наличие кнопки для открытия счета для нового пользователя в кабинете менеджера")
+    @Severity(CRITICAL)
+    @Owner("Denys Nazarov")
+    @Link(name = "XYZ Bank", url = "https://www.globalsqa.com/angularJs-protractor/BankingProject/#/manager")
+    @Issue("AUTH-555")
+    @TmsLink("TMS-5555-2")
+    public void AvailabilityOpenCustomerAccountButtonTest() throws NoSuchElementException {
+
+        assertTrue(new LoginPage(context)
+                .loginAsBankManager()
+                .waitOpenCustomerAccountButton());
+    }
+
+    @Test
+    @DisplayName("Проверка наличия кнопки просмотра всех пользователей банка в кабинете менеджера")
+    @Description("Этот тест проверяет наличие кнопки просмотра всех пользователей банка в кабинете менеджера")
+    @Severity(CRITICAL)
+    @Owner("Denys Nazarov")
+    @Link(name = "XYZ Bank", url = "https://www.globalsqa.com/angularJs-protractor/BankingProject/#/manager")
+    @Issue("AUTH-555")
+    @TmsLink("TMS-5555-3")
+    public void AvailabilityShowAllCustomersButtonTest() throws NoSuchElementException {
+
+        assertTrue(new LoginPage(context)
+                .loginAsBankManager()
+                .waitShowAllCustomersButton());
+    }
 }

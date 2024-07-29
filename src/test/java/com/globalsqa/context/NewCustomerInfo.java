@@ -1,4 +1,4 @@
-package com.globalsqa.tests;
+package com.globalsqa.context;
 
 public class NewCustomerInfo {
     public String firstName;

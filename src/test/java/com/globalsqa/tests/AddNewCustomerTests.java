@@ -1,11 +1,8 @@
 package com.globalsqa.tests;
 
 
-import com.globalsqa.pages.AddNewCustomerPage;
+import com.globalsqa.context.NewCustomerInfo;
 import com.globalsqa.pages.CustomerPage;
-import com.globalsqa.pages.LoginPage;
-import com.globalsqa.pages.ManagerPage;
-import com.globalsqa.utils.ConfigurationReader;
 import io.qameta.allure.*;
 import jdk.jfr.Description;
 import org.junit.jupiter.api.DisplayName;
@@ -15,7 +12,7 @@ import static io.qameta.allure.SeverityLevel.CRITICAL;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class AddNewCustomer extends BaseTest {
+public class AddNewCustomerTests extends BaseTest {
 
     @Test
     @DisplayName("Создание нового клиента")
@@ -26,7 +23,6 @@ public class AddNewCustomer extends BaseTest {
     @Issue("AUTH-222")
     @TmsLink("TMS-2222")
     public void AddNewCustomerTest() {
-        context.driver.get(ConfigurationReader.get("base_url"));
         NewCustomerInfo newCustomer = new NewCustomerInfo("David", "Aguero", "AI001E");
         CustomerPage.loginButton.click();
   /*      driver.
@@ -46,7 +42,6 @@ public class AddNewCustomer extends BaseTest {
     @Issue("AUTH-555")
     @TmsLink("TMS-555")
     public void emptyLoginTest() {
-        context.driver.get(ConfigurationReader.get("base_url"));
 
         //    assertEquals("",
         //            new LoginPage(context).incorrectLoginAs("",""));

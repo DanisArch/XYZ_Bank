@@ -26,6 +26,7 @@ public class BaseTest {
         context.wait = new WebDriverWait(context.driver, Duration.ofSeconds(Long.parseLong(ConfigurationReader.get("timeout"))));
         context.actions = new Actions(context.driver);
         context.js =  (JavascriptExecutor) context.driver;
+        context.driver.get(ConfigurationReader.get("base_url"));
     }
 
     @AfterEach
