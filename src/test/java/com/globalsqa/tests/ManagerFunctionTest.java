@@ -3,6 +3,7 @@ package com.globalsqa.tests;
 import com.globalsqa.pages.LoginPage;
 import io.qameta.allure.*;
 import jdk.jfr.Description;
+import jdk.jfr.Label;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.NoSuchElementException;
@@ -21,6 +22,7 @@ public class ManagerFunctionTest extends BaseTest {
     @Link(name = "XYZ Bank", url = "https://www.globalsqa.com/angularJs-protractor/BankingProject/#/manager")
     @Issue("AUTH-555")
     @TmsLink("TMS-5555-1")
+    @Label("UI Testing")
     public void AvailabilityAddNewCustomerButtonTest() throws NoSuchElementException {
 
         assertTrue(new LoginPage(context)
@@ -36,6 +38,7 @@ public class ManagerFunctionTest extends BaseTest {
     @Link(name = "XYZ Bank", url = "https://www.globalsqa.com/angularJs-protractor/BankingProject/#/manager")
     @Issue("AUTH-555")
     @TmsLink("TMS-5555-2")
+    @Label("UI Testing")
     public void AvailabilityOpenCustomerAccountButtonTest() throws NoSuchElementException {
 
         assertTrue(new LoginPage(context)
@@ -51,6 +54,7 @@ public class ManagerFunctionTest extends BaseTest {
     @Link(name = "XYZ Bank", url = "https://www.globalsqa.com/angularJs-protractor/BankingProject/#/manager")
     @Issue("AUTH-555")
     @TmsLink("TMS-5555-3")
+    @Label("UI Testing")
     public void AvailabilityShowAllCustomersButtonTest() throws NoSuchElementException {
 
         assertTrue(new LoginPage(context)

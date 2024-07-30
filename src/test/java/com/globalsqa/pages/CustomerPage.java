@@ -1,8 +1,7 @@
 package com.globalsqa.pages;
 
-
 import com.globalsqa.context.TestContext;
-import org.openqa.selenium.By;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -23,23 +22,49 @@ public class CustomerPage extends BasePage {
     @FindBy(css = "button[type='submit']")
     public static WebElement loginButton;
 
-    public void selectionCustomer() throws InterruptedException {
-
-        userSelect.click();
-        Thread.sleep(3000);
+    @Step("Открыть список всех клиентов")
+    public CustomerPage selectionCustomer() {
+        new LoginPage(context).loginAsCustomer();   //Добавил в начало заход как пользователь
+        return new CustomerPage(context);
     }
 
-    public List<String> findAllCustomer () throws InterruptedException {
-//        selectionCustomer();
-        userSelect.click();
-//        List<WebElement> allCustomersList = context.driver.findElements(By.cssSelector("#userSelect > " +
-//                "option:nth-child(n)")); //Запасной локатор для поиска
-        List<String> allCustomersListString = new ArrayList<>();
-        for (WebElement lastName :listCustomerNames) {
-            allCustomersListString.add(lastName.getText());
+    @Step("Составить список всех клиентов")
+    public List<String> findAllCustomers() {
+        selectionCustomer();
+        new CustomerPage(context).userSelect.click();
+        List<String> allCustomers = new ArrayList<>();
+        for (WebElement fullName : listCustomerNames) {
+            allCustomers.add(fullName.getText());
         }
-        return allCustomersListString;
+        return allCustomers;
     }
 
+    @Step("Определить, есть ли у банка хотя бы один клиент")
+    public boolean haveBankCustomer() {
+        if (!findAllCustomers().isEmpty()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Step("Определить, есть ли нужный нам пользователь в нашем списке клиентов")
+    public String findCustomerByName(String lastName) {
+        List<String> allCustomers;
+
+//    findAllCustomer().contains(lastName);
+//    List<String> allCustomers = ;
+        //   for (int i = 0; i < allCustomers.size(); i++) {
+//        lastName = "Ron Weasly";
+        if (findAllCustomers().contains(lastName))  //allCustomers.get(i).toString().equals(lastName)
+            return lastName;
+//    }
+    return lastName;
+    }
 }
 
+
+/*
+System.out.print(" Клиент: " + allCustomer.get(i).toString() + " с индексом - " + i +
+            " является пользователем банка.");
+            */
