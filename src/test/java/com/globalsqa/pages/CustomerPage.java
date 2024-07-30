@@ -48,17 +48,27 @@ public class CustomerPage extends BasePage {
         }
     }
 
+    @Step("Составить список всех клиентов (повторное использование")
+    public List<String> findAllCustomersForComparison() {
+        new CustomerPage(context).userSelect.click();
+        List<String> allCustomers = new ArrayList<>();
+        for (WebElement fullName : listCustomerNames) {
+            allCustomers.add(fullName.getText());
+        }
+        return allCustomers;
+    }
+
     @Step("Определить, есть ли нужный нам пользователь в нашем списке клиентов")
     public String findCustomerByName(String lastName) {
-        List<String> allCustomers;
+        List<String> allCustomers = new CustomerPage(context).findAllCustomersForComparison();
 
 //    findAllCustomer().contains(lastName);
 //    List<String> allCustomers = ;
-        //   for (int i = 0; i < allCustomers.size(); i++) {
+           for (int i = 0; i < allCustomers.size(); i++) {
 //        lastName = "Ron Weasly";
-        if (findAllCustomers().contains(lastName))  //allCustomers.get(i).toString().equals(lastName)
-            return lastName;
-//    }
+        if (allCustomers.get(i).toString().equals(lastName))  //findAllCustomersForComparison().contains(lastName)
+            break;
+    }
     return lastName;
     }
 }
