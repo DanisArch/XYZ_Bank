@@ -1,5 +1,6 @@
 package com.globalsqa.context;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -11,4 +12,5 @@ public class TestContext {
     public WebDriverWait wait;
     public Actions actions;
     public JavascriptExecutor js;
+    public Alert alert;
 }

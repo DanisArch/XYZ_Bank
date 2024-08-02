@@ -1,50 +1,49 @@
 package com.globalsqa.tests;
 
-
-import com.globalsqa.context.NewCustomerInfo;
-import com.globalsqa.pages.CustomerPage;
+import com.globalsqa.pages.AddNewCustomerPage;
 import io.qameta.allure.*;
 import jdk.jfr.Description;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.regex.Pattern;
+
 import static io.qameta.allure.SeverityLevel.CRITICAL;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static io.qameta.allure.SeverityLevel.MINOR;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AddNewCustomerTests extends BaseTest {
 
     @Test
-    @DisplayName("Создание нового клиента")
+    @DisplayName("Создание нового клиента банка")
     @Description("Этот тест проверяет возможность менеджера создать нового пользователя XYZ Bank")
     @Severity(CRITICAL)
     @Owner("Denys Nazarov")
-    @Link(name = "XYZ Bank", url = "https://www.globalsqa.com/angularJs-protractor/BankingProject/#/manager")
+    @Link(name = "XYZ Bank", url = "https://www.globalsqa.com/angularJs-protractor/BankingProject/#/manager/addCust")
     @Issue("AUTH-222")
     @TmsLink("TMS-2222")
     public void AddNewCustomerTest() {
-        NewCustomerInfo newCustomer = new NewCustomerInfo("David", "Aguero", "AI001E");
-        CustomerPage.loginButton.click();
-  /*      driver.
 
-        assertTrue(new LoginPage(context)
-                .loginAsStandardUser()
-                .getFooterText()
-                .contains(""));*/
+        String expectedTextPattern = "Customer added successfully with customer id :\\d+";
+        assertTrue(Pattern.matches(expectedTextPattern ,
+                new AddNewCustomerPage(context)
+                .addNewCustomer()));
     }
 
     @Test
     @DisplayName("Тест авторизации c отсутствующим именем")
     @Description("Этот тест проверяет логирование в систему без имени пользователя")
-    @Severity(CRITICAL)
+    @Severity(MINOR)
     @Owner("Denys Nazarov")
-    @Link(name = "Магазин товаров", url = "https://www.saucedemo.com/")
+    @Link(name = "XYZ Bank", url = "https://www.globalsqa.com/angularJs-protractor/BankingProject/#/manager/addCust")
     @Issue("AUTH-555")
     @TmsLink("TMS-555")
-    public void emptyLoginTest() {
+    public void emptyNameOfCustomerTest() {
 
         //    assertEquals("",
         //            new LoginPage(context).incorrectLoginAs("",""));
     }
 
 }
+
+//Please check the details. Customer may be duplicate.

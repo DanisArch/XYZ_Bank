@@ -39,6 +39,7 @@ public class ManagerPage extends BasePage {
 
     @Step("Добавить нового пользователя банка")
     public AddNewCustomerPage addNewCustomer () {
+        addNewCustomerButton.click();
         return new AddNewCustomerPage(context);
     }
 
