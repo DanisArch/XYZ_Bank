@@ -11,6 +11,9 @@
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
+        <maven-surefire-plugin_version>3.3.0</maven-surefire-plugin_version>
+        <maven-resources-plugin_version>3.2.0</maven-resources-plugin_version>
+        <maven-compiler-plugin_version>3.13.0</maven-compiler-plugin_version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <allure.version>2.27.0</allure.version>
         <aspectj.version>1.9.21</aspectj.version>
