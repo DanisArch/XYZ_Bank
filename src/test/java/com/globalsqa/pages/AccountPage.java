@@ -2,6 +2,7 @@ package com.globalsqa.pages;
 
 import com.globalsqa.context.TestContext;
 import io.qameta.allure.Step;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -35,7 +36,7 @@ public class AccountPage extends BasePage{
     public WebElement depositButton;
 
     @FindBy(css = "input[ng-model='amount']")
-    public WebElement AmountToBeDeposited;
+    public WebElement amountToBeDeposited;
 
     @FindBy(css = "button[class='btn btn-default']")
     public WebElement putMoneyOnDepositButton;
@@ -44,7 +45,7 @@ public class AccountPage extends BasePage{
     public WebElement withdrawlButton;
 
     @FindBy(css = "input[ng-model='amount']")
-    public WebElement AmountToBeWithdrawn;
+    public WebElement amountToBeWithdrawn;
 
     @FindBy(css = "button[class='btn btn-default']")
     public WebElement withdrawMoneyButton;
@@ -53,9 +54,18 @@ public class AccountPage extends BasePage{
     @FindBy(css = "button[ng-click='byebye()']")
     public WebElement logoutButton;
 
-    @Step("Заготовка")
-    private void name () {
+    @Step("Положить на счет 1004 - Harry Potter USD")
+    public String makeDepositPotter() {
+    WebElement confirmText = context.driver.findElement(By.cssSelector("span[class='error ng-binding']"));
+    return  confirmText.getText().toString();
+    }
 
+    @Step("Пополнить счет")
+    public AccountPage makeDeposit(String amount) {
+        depositButton.click();
+        amountToBeDeposited.sendKeys(amount);
+        putMoneyOnDepositButton.click();
+        return new AccountPage(context);
     }
 }
 

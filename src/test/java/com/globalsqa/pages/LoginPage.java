@@ -44,13 +44,11 @@ public class LoginPage extends BasePage {
 
     @Step("Проверяет наличие кнопки для авторизации менеджера банка на главной странице")
     public boolean checkBankManagerLoginButton () {
-    //    context.wait.until(ExpectedConditions.visibilityOfAllElements(new LoginPage(context).BankManagerLoginButton));
         return BankManagerLoginButton.isDisplayed();
     }
 
     @Step("Войти в приложение банка с правами пользователя")
     public CustomerPage loginAsCustomer() {
- //       context.wait.until(ExpectedConditions.visibilityOfAllElements(new LoginPage(context).customerLoginButton));
         customerLoginButton.click();
         return new CustomerPage(context);
     }

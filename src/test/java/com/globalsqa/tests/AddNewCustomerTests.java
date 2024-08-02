@@ -37,7 +37,7 @@ public class AddNewCustomerTests extends BaseTest {
     @Owner("Denys Nazarov")
     @Link(name = "XYZ Bank", url = "https://www.globalsqa.com/angularJs-protractor/BankingProject/#/manager/addCust")
     @Issue("AUTH-555")
-    @TmsLink("TMS-555")
+    @TmsLink("TMS-5555")
     public void emptyNameOfCustomerTest() {
 
         //    assertEquals("",
@@ -46,4 +46,6 @@ public class AddNewCustomerTests extends BaseTest {
 
 }
 
+
+//Please fill in this field.
 //Please check the details. Customer may be duplicate.

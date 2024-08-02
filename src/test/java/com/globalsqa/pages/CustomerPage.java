@@ -2,15 +2,15 @@ package com.globalsqa.pages;
 
 import com.globalsqa.context.TestContext;
 import io.qameta.allure.Step;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerPage extends BasePage {
-
-//    List<String> allCustomers=null;
 
     public CustomerPage(TestContext context) {
         super(context);
@@ -29,6 +29,16 @@ public class CustomerPage extends BasePage {
     public CustomerPage selectionCustomer() {
         new LoginPage(context).loginAsCustomer();
         return new CustomerPage(context);
+    }
+
+    @Step("Зайти в аккаунт пользователя по имени и фамилии")
+    public AccountPage enterWithLastName(String lastName) {
+        userSelect.click();
+        WebElement allCustomers = context.driver.findElement(By.cssSelector("#userSelect"));
+        Select select = new Select(allCustomers);
+        select.selectByVisibleText(lastName);
+        loginButton.click();
+        return new AccountPage(context);
     }
 
     @Step("Составить список всех клиентов")
