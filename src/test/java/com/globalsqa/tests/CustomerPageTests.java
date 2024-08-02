@@ -1,6 +1,7 @@
 package com.globalsqa.tests;
 
 import com.globalsqa.pages.CustomerPage;
+import com.globalsqa.pages.LoginPage;
 import io.qameta.allure.*;
 import jdk.jfr.Description;
 import org.junit.jupiter.api.Assertions;

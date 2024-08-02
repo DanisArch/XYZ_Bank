@@ -33,7 +33,7 @@ public class CheckBankNameTests extends BaseTest {
     @Link(name = "XYZ Bank", url = "https://www.globalsqa.com/angularJs-protractor/BankingProject/#/login")
     @Issue("AUTH-111")
     @TmsLink("TMS-1111-2")
-    public void checkBankNameTitleTest() throws InterruptedException {
+    public void checkBankNameTitleTest() {
 
         assertEquals("XYZ Bank", context.driver.getTitle());
     }

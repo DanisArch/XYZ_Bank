@@ -8,25 +8,40 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import java.time.Duration;
+
 public class DriverFactory {
     public static WebDriver get() {
         String browser = ConfigurationReader.get("browser");
         WebDriver driver;
+//        System.setProperty("webdriver.chrome.driver", "SeleniumDrivers/chromedriver");
         switch (browser) {
             case "chrome" -> {
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions options = new ChromeOptions();
                 if (ConfigurationReader.get("headless").toLowerCase().contains("true")) {
-                    options.addArguments("--headless");
+                    options.addArguments("--no-default-browser-check");
+                    options.addArguments("--disable-search-engine-choice-screen");
+/*                    options.addArguments("--no-first-run");
+                    options.addArguments("--disable-infobars");
+                    options.addArguments("--disable-extensions");
+                    options.addArguments("--disable-popup-blocking");
+                    options.addArguments("--disable-default-apps");
+                    options.addArguments("--disable-sync");
+                    options.addArguments("user-data-dir=C:\\path\\to\\new\\profile");
+              Настройки чтоб убрать всплывающее окно Chrome
+  */
+/*                    options.addArguments("--headless");
                     options.addArguments("--no-sandbox");
                     options.addArguments("--disable-infobars");
-                    options.addArguments("--disable-popup-blocking");
+                    options.addArguments("--disable-popup-blocking");*/
                     options.addArguments("--disable-notifications");
                     options.addArguments("--lang=en-en");
                 }
                 driver = new ChromeDriver(options);
                 if (ConfigurationReader.get("maximize").toLowerCase().contains("true")) {
                     driver.manage().window().maximize();
+                    driver.manage().timeouts().implicitlyWait(Duration.ofMillis(10000));
                 }
                 return driver;
             }

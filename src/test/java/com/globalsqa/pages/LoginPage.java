@@ -30,7 +30,7 @@ public class LoginPage extends BasePage {
     // метод, который помогает вести логи (разобраться с этим вопросом
     @Step("Проверяет наличие кнопки для авторизации пользователя банка на главной странице")
     public boolean checkCustomerLoginButton () {
-        context.wait.until(ExpectedConditions.visibilityOfAllElements(new LoginPage(context).customerLoginButton));
+ //       context.wait.until(ExpectedConditions.visibilityOfAllElements(new LoginPage(context).customerLoginButton));
         boolean answr;
         if (customerLoginButton.isDisplayed()) {
             Allure.step("Кнопка для авторизации пользователя банка активна");
@@ -44,20 +44,20 @@ public class LoginPage extends BasePage {
 
     @Step("Проверяет наличие кнопки для авторизации менеджера банка на главной странице")
     public boolean checkBankManagerLoginButton () {
-        context.wait.until(ExpectedConditions.visibilityOfAllElements(new LoginPage(context).BankManagerLoginButton));
+    //    context.wait.until(ExpectedConditions.visibilityOfAllElements(new LoginPage(context).BankManagerLoginButton));
         return BankManagerLoginButton.isDisplayed();
     }
 
     @Step("Войти в приложение банка с правами пользователя")
     public CustomerPage loginAsCustomer() {
-        context.wait.until(ExpectedConditions.visibilityOfAllElements(new LoginPage(context).customerLoginButton));
+ //       context.wait.until(ExpectedConditions.visibilityOfAllElements(new LoginPage(context).customerLoginButton));
         customerLoginButton.click();
         return new CustomerPage(context);
     }
 
     @Step("Войти в приложение банка с правами менеджера")
     public ManagerPage loginAsBankManager() {
-        context.wait.until(ExpectedConditions.visibilityOfAllElements(new LoginPage(context).BankManagerLoginButton));
+     //   context.wait.until(ExpectedConditions.visibilityOfAllElements(new LoginPage(context).BankManagerLoginButton));
         BankManagerLoginButton.click();
         return new ManagerPage(context);
     }
