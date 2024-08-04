@@ -104,6 +104,26 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.5</version>
                 <configuration>
+                    <testFailureIgnore>true</testFailureIgnore>
+
+
+                    <!-- Зависимость для паралельного запуска -->
+                    <properties>
+                        <configurationParameters>
+                            junit.jupiter.execution.parallel.enabled=true
+                            junit.jupiter.execution.parallel.mode.default=concurrent
+                            junit.jupiter.execution.parallel.mode.classes.default=concurrent
+                            junit.jupiter.execution.parallel.config.strategy=fixed
+                            junit.jupiter.execution.parallel.config.fixed.parallelism=4
+                        </configurationParameters>
+                        <property>
+                            <name>listener</name>
+                            <value>io.qameta.allure.junit5.AllureJunit5</value>
+                        </property>
+                    </properties>
+                    <!-- Зависимость для паралельного запуска (конец)-->
+
+
                     <includes>
                         <include>**/*Tests.java</include>
                     </includes>

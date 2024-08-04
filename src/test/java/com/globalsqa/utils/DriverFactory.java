@@ -19,10 +19,11 @@ public class DriverFactory {
             case "chrome" -> {
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions options = new ChromeOptions();
+                options.addArguments("--disable-search-engine-choice-screen");
                 if (ConfigurationReader.get("headless").toLowerCase().contains("true")) {
                     options.addArguments("--no-default-browser-check");
-                    options.addArguments("--disable-search-engine-choice-screen");
-/*                    options.addArguments("--no-first-run");
+/*                  options.addArguments("--disable-search-engine-choice-screen");
+                    options.addArguments("--no-first-run");
                     options.addArguments("--disable-infobars");
                     options.addArguments("--disable-extensions");
                     options.addArguments("--disable-popup-blocking");
