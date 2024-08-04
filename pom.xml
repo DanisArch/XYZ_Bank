@@ -16,7 +16,7 @@
         <maven-compiler-plugin_version>3.13.0</maven-compiler-plugin_version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <allure.version>2.27.0</allure.version>
-        <aspectj.version>1.9.21</aspectj.version>
+        <aspectj.version>1.9.22</aspectj.version>
     </properties>
 
     <dependencyManagement>
@@ -70,6 +70,13 @@
             <scope>test</scope>
         </dependency>
         <!-- Allure JUnit 5 adapter -->
+        <!-- Для корректной работы скриншртов -->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjlib</artifactId>
+            <version>1.6.2</version>
+        </dependency>
+        <!-- Для корректной работы скриншртов (конец) -->
         <!-- Allure Java Commons -->
         <dependency>
             <groupId>io.qameta.allure</groupId>
@@ -80,39 +87,51 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin_version}</version>
+
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+
+                </configuration>
+            </plugin>
             <!-- Surefire Plugin для запуска тестов -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.2.3</version>
+                <version>3.2.5</version>
                 <configuration>
                     <includes>
-                        <include>**/*Test.java</include>
+                        <include>**/*Tests.java</include>
                     </includes>
-                    <argLine>
-                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
-                    </argLine>
-                    <systemProperties>
-                        <property>
-                            <name>allure.results.directory</name>
-                            <value>${basedir}/target/allure-results</value>
-                        </property>
-                    </systemProperties>
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.aspectj</groupId>
-                        <artifactId>aspectjweaver</artifactId>
-                        <version>${aspectj.version}</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
+            <!--       <testFailureIgnoreilure>false</testFailureIgnoreilure>    Красным подсвечивает-->
+                   <argLine>
+                       -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                   </argLine>
+                   <systemProperties>
+                       <property>
+                           <name>allure.results.directory</name>
+                           <value>${project.build.directory}/allure-results</value>  <!-- basedir и убрал /target так как создавал не там -->
+                       </property>
+                   </systemProperties>
+               </configuration>
+               <dependencies>
+                   <dependency>
+                       <groupId>org.aspectj</groupId>
+                       <artifactId>aspectjweaver</artifactId>
+                       <version>${aspectj.version}</version>
+                   </dependency>
+               </dependencies>
+           </plugin>
 
-            <!-- Allure Maven Plugin -->
+           <!-- Allure Maven Plugin -->
             <plugin>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
-                <version>2.10.0</version>
+                <version>2.12.0</version>
                 <executions>
                     <execution>
                         <id>allure-report</id>

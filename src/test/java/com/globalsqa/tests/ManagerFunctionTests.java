@@ -12,7 +12,7 @@ import org.openqa.selenium.NoSuchElementException;
 import static io.qameta.allure.SeverityLevel.CRITICAL;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class ManagerFunctionTest extends BaseTest {
+public class ManagerFunctionTests extends BaseTest {
 
     @Test
     @DisplayName("Проверка наличия кнопки для добавления нового пользователя в кабинете менеджера")
