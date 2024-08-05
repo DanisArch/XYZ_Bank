@@ -29,8 +29,7 @@ public class LoginPage extends BasePage {
     //Логи нужно/желательно вести не в самом тесте, а выносить их в метод. Для этого у Алюра есть специальный
     // метод, который помогает вести логи (разобраться с этим вопросом
     @Step("Проверяет наличие кнопки для авторизации пользователя банка на главной странице")
-    public boolean checkCustomerLoginButton () {
- //       context.wait.until(ExpectedConditions.visibilityOfAllElements(new LoginPage(context).customerLoginButton));
+    public boolean checkCustomerLoginButton () {;
         boolean answr;
         if (customerLoginButton.isDisplayed()) {
             Allure.step("Кнопка для авторизации пользователя банка активна");

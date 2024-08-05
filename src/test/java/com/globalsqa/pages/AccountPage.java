@@ -5,6 +5,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class AccountPage extends BasePage{
     public WebElement welcomeUserName;
 
     @FindBy(css = "#accountSelect")
-    public List<WebElement> listAccountNummerCustomer;
+    public WebElement listAccountNummerCustomer;
 
     @FindBy(css = "div:nth-child(3) > strong:nth-child(1)")
     public WebElement selectedAccountNummerOfCustomer;
@@ -54,7 +55,7 @@ public class AccountPage extends BasePage{
     @FindBy(css = "button[ng-click='byebye()']")
     public WebElement logoutButton;
 
-    @Step("Положить на счет 1004 - Harry Potter USD")
+    @Step("Получить сообщение о подтверждении, что на счет 1004 USD - Harry Potter положил деньги")
     public String makeDepositPotter() {
     WebElement confirmText = context.driver.findElement(By.cssSelector("span[class='error ng-binding']"));
     return  confirmText.getText().toString();
@@ -65,6 +66,31 @@ public class AccountPage extends BasePage{
         depositButton.click();
         amountToBeDeposited.sendKeys(amount);
         putMoneyOnDepositButton.click();
+        return new AccountPage(context);
+    }
+
+    @Step("Получить сообщение о подтверждении, что co счета 1003 Rupee - Hermoine Granger сняли деньги")
+    public String makeWithdrawHermoineGrangerConfirm() {
+        WebElement confirmText = context.driver.findElement(By.cssSelector("span[class='error ng-binding']"));
+        return  confirmText.getText().toString();
+    }
+
+    @Step("Снять со счета Hermoine Granger деньги")
+    public AccountPage makeWithdrawHermoineGranger(String amount, String account) throws InterruptedException {
+        listAccountNummerCustomer.click();
+        WebElement allAccountCustomers = context.driver.findElement(By.cssSelector("#accountSelect"));
+        Select select = new Select(allAccountCustomers);
+        select.selectByVisibleText(account);
+        Thread.sleep(3000);
+        makeWithdraw(amount);
+        return new AccountPage(context);
+    }
+
+    @Step("Снять со счета деньги")
+    public AccountPage makeWithdraw(String amount) {
+        withdrawlButton.click();
+        amountToBeWithdrawn.sendKeys(amount);
+        withdrawMoneyButton.click();
         return new AccountPage(context);
     }
 }
